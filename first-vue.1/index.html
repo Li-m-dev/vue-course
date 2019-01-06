@@ -14,15 +14,39 @@
     <!-- v-model set up two way binding
     v-on to listen to event -->
     <p>{{ name }}</p>
+    <button @click="counter++">Increase</button>
+    <button @click="counter--">Decrease</button>
+    <button @click="secondCounter++">Increase second</button>
+    <p>Counter: {{ counter }} | {{ secondCounter}}</p>
+    <p>Result: {{ result() }} | {{ output }}</p>
   </div>
   <script>
     new Vue({
       el: '#app',
       data: {
-        name: 'Li'
+        name: 'Li',
+        counter: 0,
+        secondCounter: 0
+      },
+      computed: {
+        output: function() {
+          console.log('computed');
+          return this.counter > 5 ? 'Greater than 5' : "smaller than 5";
+        }
+      },
+      watch: {
+        counter: function(value) {
+          let vm = this;
+          setTimeout(function() {
+            vm.counter = 0;
+          }, 2000)
+        }
       },
       methods: {
-      
+        result: function() {
+          console.log('methods');
+          return this.counter > 5 ? 'Greater than 5' : "smaller than 5";
+        }
       }
     })
   </script>
