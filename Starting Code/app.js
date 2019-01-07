@@ -1,13 +1,19 @@
 // Put this in the script section in JSFiddle
 // In a local setup, you need to merge this and the index.html file into one file
 new Vue({
-	el: '#app',
-	data: {
-		show: true,
-    ingredients: ['meat', 'fruit', 'cookies'],
-    persons: [
-    	{name: 'Max', age: 27, color: 'red'},
-      {name: 'anna', age: 'unknown', color: 'blue'}
-    ]
-	}
-})
+  el: '#exercise',
+  data: {
+  isShown: true,
+    array: ['Max', 'Anna', 'Chris', 'Manu'],
+    myObject: {
+      title: 'Lord of the Rings',
+      author: 'J.R.R. Tolkiens',
+      books: '3'
+    },
+    testData: {
+      name: 'TESTOBJECT', 
+      id: 10,
+      data: [1.67, 1.33, 0.98, 2.21]
+    }
+  }
+});
