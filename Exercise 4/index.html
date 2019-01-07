@@ -7,27 +7,27 @@
     <div id="effect" :class="effectClass"></div>
   </div>
   <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
-  <div :class="['size', 'blue', 'text']">I got no class :(</div>
+  <div :class="['size', 'float', 'blue', 'text']">I got no class :(</div>
   <!-- 3) Let the user enter a class (create some example classes) and attach it -->
   <div>
     <input type="text" v-model='userClass'>
-    <div :class="['visible', userClass]"></div>
+    <div v-bind:class="[{visible: true}, userClass]"></div>
   </div>
   <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
   <div>
-    <input type="text">
-    <input type="text">
-    <div></div>
+    <input type="text" v-model="userClass" >
+    <input type="text" v-model="isVisible">
+    <div :class="[{visible: isVisible}, userClass]"></div>
   </div>
   <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
   <div>
-    <input type="text">
-    <div></div>
+    <input type="text" v-model="myStyle.backgroundColor">
+    <div v-bind:style="myStyle"></div>
   </div>
   <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
   <div>
     <button v-on:click="startProgress">Start Progress</button>
-    <div></div>
+    <div v-bind:class="['progress-bar']" v-bind:style="progressBar"></div>
   </div>
 </div>
 <script src="app.js"></script>
@@ -53,11 +53,19 @@
 .blue {
   background-color: blue
 }
+.float {
+  float: right;
+}
 .text {
   color: red
 }
 .visible {
   width: 100px;
   height: 100px;
+}
+.progress-bar {
+  width: 200px;
+  height: 20px;
+  border: 1px solid black;
 }
 </style>
