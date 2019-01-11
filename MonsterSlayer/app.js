@@ -61,6 +61,7 @@ new Vue ({
     monsterAttack() {
       let damage = this.calculateDamage(5, 12);
       this.playerHealth -= damage;
+      // unshift() adds new items to the beginning of the array and return the new length.
       this.turns.unshift({
         isPlayer: false,
         text: `Monster hits Player for ${damage}`
