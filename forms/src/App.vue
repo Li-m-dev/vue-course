@@ -97,17 +97,24 @@
                     </select>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <appSwitch v-model="dataSwitch"></appSwitch>
+                </div>
+            </div>
             <hr>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <button
-                            class="btn btn-primary">Submit!
+                            class="btn btn-primary"
+                            @click.prevent="submitted"
+                            >Submit!
                     </button>
                 </div>
             </div>
         </form>
         <hr>
-        <div class="row">
+        <div class="row" v-if="isSubmitted">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -124,7 +131,7 @@
                         </ul>
                         <p>Gender: {{ gender }}</p>
                         <p>Priority: {{ selectedPriority }} </p>
-                        <p>Switched:</p>
+                        <p>Switched: {{ dataSwitch}}</p>
                     </div>
                 </div>
             </div>
@@ -133,6 +140,7 @@
 </template>
 
 <script>
+    import Switch from './Switch.vue';
     export default {
         data() {
             return {
@@ -147,14 +155,27 @@
                 // sendMail and gender both use v-model, while sendMail we set it to any 
                 // array, so we can have mutiple selections. For gender we can select either or.
                 selectedPriority: "high",
-                priorities: ['high', 'medium', 'low']
+                priorities: ['high', 'medium', 'low'],
+                dataSwitch: true,
+                isSubmitted: false
             }
+        },
+        methods: {
+            submitted() {
+                this.isSubmitted = true;
+            }
+        },
+        components: {
+            appSwitch: Switch
         }
     }
 
     // v-model:  first, it binds the value like :value="userData.email"
     //           second, @input or @change event listener
     //           @input = "userData.email = $event.target.value"
+
+    // a button in the form element by default it will submit the form to the
+    // server, so we add .prevent to prevent this happens. so we can handle in vue.js
 </script>
 
 <style>
