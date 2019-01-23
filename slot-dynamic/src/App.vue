@@ -5,15 +5,15 @@
                 <br>
                 <button 
                 class="btn btn-primary"
-                @click="selectedComponent = 'appBlue'"
+                @click="selectedComponent='appBlue', color='blue'"
                 >Load Blue Template</button>
                 <button 
                 class="btn btn-success"
-                @click="selectedComponent = 'appGreen'"
+                @click="selectedComponent = 'appGreen', color='green'"
                 >Load Green Template</button>
                 <button 
                 class="btn btn-danger"
-                @click="selectedComponent = 'appRed'"
+                @click="selectedComponent = 'appRed', color='red'"
                 >Load Red Template</button>
                 <hr>
                 <!-- {{ selectedComponent }} -->
@@ -27,7 +27,7 @@
                     <h2 slot>I am red </h2>
                 </app-red> -->
                 <component :is="selectedComponent">
-                    <p>This is the content</p>
+                    <p>This is {{ color }}</p>
                 </component>
             </div>
         </div>
@@ -42,7 +42,8 @@
     export default {
         data() {
             return{
-                selectedComponent:'appBlue'
+                selectedComponent:'appBlue',
+                color: 'blue'
             }
         },
         components: {

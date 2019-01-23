@@ -1,13 +1,13 @@
 <template>
     <div>
         <div
-                id="on"
-                @click="switched(true)"
-                :class="{active: value}">On</div>
+            id="on"
+            @click="switched(true)"
+            :class="{active: value}">On</div>
         <div
-                id="off"
-                @click="switched(false)"
-                :class="{active: !value}">Off</div>
+            id="off"
+            @click="switched(false)"
+            :class="{active: !value}">Off</div>
     </div>
 </template>
 

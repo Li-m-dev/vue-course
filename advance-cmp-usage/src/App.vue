@@ -11,9 +11,11 @@
                 <h2 slot="title">{{ quoteTitle }}</h2>
                 <p slot="content">This is wonderful</p>
                 </Quote> -->
+                <keep-alive>
                 <component :is="selectedComponent">
                     <p>Default Content</p>
                 </component>
+                </keep-alive>
 
             </div>
         </div>
