@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <form>
+        <form v-if="!isSubmitted">
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <!-- Exercise 1 -->
@@ -9,15 +9,7 @@
                     <!-- Mail -->
                     <!-- Password -->
                     <!-- Store Data? Yes/No -->
-                    <div class="form-group">
-                        <label for="name">Full name</label>
-                        <input
-                            type="text"
-                            id="name"
-                            class="form-control"
-                            v-model="userInfo.name"
-                            >
-                    </div>
+                <FullName v-model="userInfo.fullName"></FullName>
                     <div class="form-group">
                         <label for="email">Mail</label>
                         <input
@@ -42,14 +34,12 @@
                         <label for="yes">
                             <input
                                 type="radio"
-                                id="yes"
                                 value="Yes"
                                 v-model="storeData"> Yes
                         </label>
                         <label for="no">
                             <input
                                 type="radio"
-                                id="no"
                                 value="No"
                                 v-model="storeData"> No
                         </label>
@@ -83,7 +73,7 @@
                         <h4>Your Data</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Full Name: {{ userInfo.name }}</p>
+                        <p>Full Name: {{ userInfo.fullName }}</p>
                         <p>Mail: {{ userInfo.email}}</p>
                         <p>Password: {{ userInfo.password }}</p>
                         <p>Store in Database?: {{ storeData }}</p>
@@ -95,22 +85,26 @@
 </template>
 
 <script>
+import FullName from "./FullName.vue";
     export default {
         data() {
             return {
                 userInfo:{
-                    name : "",
+                    fullName : "LI Swafford",
                     email : "",
                     password : ""
                 },
                 isSubmitted: false,
-                storeData: "yes"
+                storeData: "Yes"
             }
         },
         methods: {
             submitted(){
                 this.isSubmitted = true;
             }
+        },
+        components: {
+            FullName
         }
     }
 </script>
